@@ -1,0 +1,27 @@
+Ciao!
+allora come prima cosa vai qui : https://github.com/ e fai un account
+dopo va in in htdocs (la cartella dentro xampp) e crei una cartella e la chiami pascoli
+fai click sinistro del mouse e scegli git bash here
+ti si apre una finestra del prompt
+scrivi: git config user.email "la tua mail che hai usato per registrarti"
+premi invio
+scrivi: git config user.name "il tuo username che hai usato"
+premi invio
+scrivi: git clone https://github.com/spawn81/innoweek.git
+premi invio
+scrivi: git pull
+premi invio
+(ti si potrebbe aprire una schermata che ti dice di inserire la password di github)
+
+tu metterai tutti i tuoi file nella cartella insegnanti, io invece negli studenti
+ogni volta, alla fine della "giornata faticosa di lavoro" per salvare online tutte le tue modifiche ai file devi fare così
+(sempre con la finestra del prompt dentro la cartella pascoli/innoweek)
+git add .
+git commit -m " scrivi due parole sulle modifiche fatte"
+git push
+
+et voilà semplice semplice.
+Ogni volta, prima di iniziare a lavorare invece, (sempre con la finestra del prompt dentro la cartella pascoli/innoweek)scrivi
+git pull
+
+ricorda che per vedere in locale devi avviare xampp, avviare apache e mysql, e poi nella barra degli indirizzi scrivere localhost/pascoli/innoweek/insegnanti
