@@ -27,12 +27,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Validate credentials
     if(empty($password_err)){
+        $pdo=connetti();
         // Prepare a select statement
-        $sql = "SELECT * FROM inno2018_alunni WHERE Password = :password";
+        $sql = "SELECT * FROM ".ALUNNI." WHERE Password = :password";
         
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
+         
             
             // Set parameters
             $param_password = trim($_POST["password"]);
@@ -69,12 +71,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         }
         
-        // Close statement
-        unset($stmt);
+        // Close statement &connection
+        disconnetti($stmt, $pdo);
     }
     
     // Close connection
-    unset($pdo);
+    //unset($pdo);
 }
 ?>
 <!doctype html>

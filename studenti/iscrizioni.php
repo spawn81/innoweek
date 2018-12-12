@@ -11,6 +11,7 @@ $id=$_SESSION["id"];
 $user=$_SESSION["username"];
 $classe=$_SESSION["classe"]; 
 require_once "../config.php";
+require_once "helper_booking.php";// raccolta di funzioni per gestire i corsi e le prenotazioni
 ?>
 
 <!doctype html>
@@ -25,7 +26,7 @@ require_once "../config.php";
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
-
+    <link rel=" stylesheet" href="mystyle.css">
     <title>Student Dashboard</title>
   </head>
   <body>
@@ -36,11 +37,11 @@ require_once "../config.php";
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="dashboard.php">Home <span class="sr-only">(current)</span></a>
+          <li class="nav-item ">
+            <a class="nav-link" href="dashboard.php">Home </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="iscrizioni.php">Iscriviti ai corsi</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="iscrizioni.php">Iscriviti ai corsi<span class="sr-only">(current)</span></a>
           </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0" action="logout.php" method="POST">
@@ -55,7 +56,43 @@ require_once "../config.php";
       <i class="fas fa-user-circle" style="color:Dodgerblue;"></i> 
       <?php echo $user ?>
 </h2>
-    qua ci metterò il piano orario
+<br>
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+      <i class="fas fa-frown-open" style="color:red;"></i><button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Corsi di recupero (clicca per vederli tutti)
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+
+        <?php 
+        $tipo="%R%";
+        seleziona_corsi($classe,$tipo);
+        ?>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+      <i class="fas fa-smile-beam" style="color:green;"></i> <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Corsi di eccellenza (clicca per vederli tutti)
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+mettere i risultati della query per i corsi di eccellenza
+      </div>
+    </div>
+  </div>
+  
+</div>
 </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -63,4 +100,9 @@ require_once "../config.php";
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
+  <script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+  </script>
 </html>
