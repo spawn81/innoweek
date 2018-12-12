@@ -13,7 +13,8 @@ scrivi: git pull
 premi invio
 (ti si potrebbe aprire una schermata che ti dice di inserire la password di github)
 
-tu metterai tutti i tuoi file nella cartella insegnanti, io invece negli studenti
+tu salverai tutti i tuoi file nella cartella insegnanti, io invece negli studenti
+fuori dalle due cartelle devi creare un file chiamato config.php dove ci metti SOLO i parametri di connessione al tuo database in locale
 ogni volta, alla fine della "giornata faticosa di lavoro" per salvare online tutte le tue modifiche ai file devi fare così
 (sempre con la finestra del prompt dentro la cartella pascoli/innoweek)
 git add .
