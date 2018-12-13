@@ -78,7 +78,8 @@ require_once "helper_booking.php";// raccolta di funzioni per gestire i corsi e 
 
         <?php 
         $tipo="%R%";
-        seleziona_corsi($classe,$tipo,$id);
+        $tpl="myTable";
+        seleziona_corsi($classe,$tipo,$id,$tpl);
         ?>
       </div>
     </div>
@@ -93,7 +94,16 @@ require_once "helper_booking.php";// raccolta di funzioni per gestire i corsi e 
     </div>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="card-body">
-mettere i risultati della query per i corsi di eccellenza
+      <div class="input-group">
+            <input class="form-control  border" type="search" value="" id="search-input-ecc" placeholder="Cerca un corso" onkeyup="myFunctione()">
+            
+           
+        </div>
+      <?php 
+        $tipo="%P%";
+        $tpl="myTableE";
+        seleziona_corsi($classe,$tipo,$id,$tpl);
+        ?>
       </div>
     </div>
   </div>
@@ -118,6 +128,30 @@ function myFunction() {
   input = document.getElementById("search-input");
   filter = input.value.toUpperCase();
   table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+</script>
+  <script>
+function myFunctione() {
+  // Declare variables 
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("search-input-ecc");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTableE");
   tr = table.getElementsByTagName("tr");
 
   // Loop through all table rows, and hide those who don't match the search query

@@ -1,7 +1,7 @@
 <?php
 
 //funzione per selezionare i corsi
-function seleziona_corsi($classe, $tipo,$id){
+function seleziona_corsi($classe, $tipo,$id,$t){
     
 $c= $classe[0];
 switch($c)
@@ -44,7 +44,7 @@ if($stmt = $pdo->prepare($sql)){
     // Attempt to execute the prepared statement
     if($stmt->execute()){
             echo '<div class="table-responsive">
-                    <table class="table table-sm" id="myTable">
+                    <table class="table table-sm" id="'.$t.'">
                         <thead>
                         <tr>
                         
