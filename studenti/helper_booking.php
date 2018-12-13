@@ -1,7 +1,7 @@
 <?php
 
 //funzione per selezionare i corsi
-function seleziona_corsi($classe, $tipo){
+function seleziona_corsi($classe, $tipo,$id){
     
 $c= $classe[0];
 switch($c)
@@ -57,7 +57,7 @@ if($stmt = $pdo->prepare($sql)){
                         <tbody>';
         // Check  results
            while($row = $stmt->fetch()){
-               stampa ($row);
+               stampa ($row, $id);
 
                 
             }
@@ -73,11 +73,20 @@ disconnetti($stmt,$pdo);
     
 }
 //stampo le tabelle
-function stampa($row){
-    //echo "<tr><td>".$row["Nome"]."</td>  <td>".$row["Descrizione"]."</td><td>".$row["Tipo"]."</td><td>".$row["Classe"]."</td><td>".$row["Docente"]."</td><td>";
+function stampa($row, $id){
+    if($row["Iscritti"]<$row["Max-Alunni"]){
     echo '<tr><td>'.$row["Nome"].'<span data-toggle="tooltip" title="'.$row["Descrizione"].'"> <i class="fas fa-question-circle" style="color:green;"></i><span>
-    </td><td class="d-none d-sm-table-cell">'.$row["Classe"].'</td><td>'.$row["Docente"].'</td><td><i class="fas fa-file-signature fa-2x" style="color:red;"></i></td></tr>';
+    </td><td class="d-none d-sm-table-cell">'.$row["Classe"].'</td><td>'.$row["Docente"].'</td><td>
+    <form method="post" action="register.php">
+    <input type="hidden" name="userid" value="'.$id.'">
+    <input type="hidden" name="courseid" value="'.$row["Codice_Corso"].'">
+
+    <button  class="btn btn-danger btn-circle" name="vai" type="submit"><i class="fas fa-file-signature fa-2x" "></i></button>
+    </form>
+    </td></tr>';
+    }
 
 }
+//prenoto
 
 ?>

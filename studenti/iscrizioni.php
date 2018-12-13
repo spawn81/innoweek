@@ -72,7 +72,7 @@ require_once "helper_booking.php";// raccolta di funzioni per gestire i corsi e 
 
         <?php 
         $tipo="%R%";
-        seleziona_corsi($classe,$tipo);
+        seleziona_corsi($classe,$tipo,$id);
         ?>
       </div>
     </div>
