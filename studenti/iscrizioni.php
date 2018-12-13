@@ -61,14 +61,20 @@ require_once "helper_booking.php";// raccolta di funzioni per gestire i corsi e 
   <div class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
-      <i class="fas fa-frown-open" style="color:red;"></i><button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Corsi di recupero (clicca per vederli tutti)
+      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+      <i class="fas fa-frown-open" style="color:red;"></i> Corsi di recupero (clicca qui)
         </button>
       </h5>
     </div>
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
+      <div class="input-group">
+            <input class="form-control  border" type="search" value="" id="search-input" placeholder="Cerca un corso" onkeyup="myFunction()">
+            
+           
+        </div>
+        
 
         <?php 
         $tipo="%R%";
@@ -80,8 +86,8 @@ require_once "helper_booking.php";// raccolta di funzioni per gestire i corsi e 
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
-      <i class="fas fa-smile-beam" style="color:green;"></i> <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        Corsi di eccellenza (clicca per vederli tutti)
+      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      <i class="fas fa-smile-beam" style="color:green;"></i> Corsi di eccellenza (clicca qui)
         </button>
       </h5>
     </div>
@@ -105,4 +111,28 @@ mettere i risultati della query per i corsi di eccellenza
   $('[data-toggle="tooltip"]').tooltip()
 })
   </script>
+  <script>
+function myFunction() {
+  // Declare variables 
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("search-input");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+</script>
 </html>
